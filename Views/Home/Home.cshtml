@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+
+
+<div class="bs-example">
+    <nav id="myNavbar" class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><div style="font-weight:bold; color:green">Scheduler</div></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home </a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Schedule Event <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Event/NewEvent">Schedule a new event</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Event/ViewEvents">View scheduled events</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Schedule SMS <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Sms/NewSms">Schedule a new SMS</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Sms/ViewSms">View scheduled SMS</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Schedule Profile <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Profile/NewProfile">Schedule a new profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Profile/ViewProfiles">View scheduled profile</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">@Session["username"] <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Home/Logout">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+</div>
+
+
+
+
+<div class="row" style="margin-top:50px">
+    <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 col-lg-10 col-lg-offset-1">
+        <p>This is a web based version of the Android application <label style="color:green">
+            Scheduler</label>. The purpose of this web based app is to make the users more 
+            facilitated so that they can schedule their daily life tasks such as 
+            <label style="color:#bb2828">Schedule Event, </label>
+            <label style="color:#bb2828">Schedule Message (SMS)</label>
+            <label style="color:#bb2828"> & Schedule Profile</label>
+             here in a case or situation when they don't have the smart phone exact 
+            at that time and they are working on the laptop or desktop computer.
+        </p>
+
+    </div>
+</div>
+
+
+<div class="row" style="margin-top:10px">
+    <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 col-lg-10 col-lg-offset-1">
+        <p>The only thing just you need to do is to open your android app at your smart phone and press 
+            the Sync button so that you can have your task scheduled in your account of web base version
+            in your smart phone. 
+        </p>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2   col-xs-8 col-xs-offset-2   col-lg-8 col-lg-offset-2">
+        <img style="display:inline-block; height:400px; width:800px" src="~/Images/demo.jpg" />
+    </div> 
+</div>

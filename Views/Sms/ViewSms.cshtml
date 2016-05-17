@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "ViewSMS";
+    int counter = 0;
+}
+@model List<Scheduler_Web.Models.Sm>
+
+
+<div class="container" id="div_viewevents">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text-center">Scheduled SMS added by " @Session["username"] "</h4>
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary" style="border-radius: 10px">
+        <div class="panel-body" style="margin-top: 20px">
+
+            @if (Model.Count() == 0)
+            {
+                <div class="text-center" style="font-weight: bold">You have not added any scheduled sms :) </div> 
+            }
+            else
+            {
+                foreach (var x in Model)
+                {
+                    counter = counter + 1;
+                        
+                <div class="well" style="margin-top: 10px">
+
+                    <div class="text-center">@counter</div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-left">
+                                <label>Time : </label>
+                                @x.Time
+                            </div>
+                            <div class="pull-right">
+                                <label>Date : </label>
+                                @x.Date
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="well" style="background-color: white">
+                            <label>Contact No :</label>
+                            @x.ContactNo
+                            <br />
+                            <label>Message :</label>
+                            @x.Message
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary pull-left" id="@x.Id" onclick="fu(this.id)">Edit Event</button>
+                            <button class="btn btn-danger pull-right" id="@x.Id" onclick="fd(this.id)">Delete Event</button>
+                        </div>
+                    </div>
+
+
+
+
+                </div>   
+                     
+                }
+            }
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+    function fu(id) {
+        window.location.replace("/Sms/EditSms?id=" + id);
+    }
+
+    function fd(id) {
+        $.getJSON("/Sms/DeleteSms?id=" + id, function (result) {
+            if (result) {
+                alert("Sms Deleted Successfully");
+                window.location.replace("ViewSms");
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "ViewEvents";
+    int counter = 0;
+}
+@model List<Scheduler_Web.Models.Event>
+
+
+<div class="container" id="div_viewevents">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text-center">Events added by " @Session["username"] "</h4>
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary" style="border-radius: 10px">
+        <div class="panel-body" style="margin-top: 20px">
+
+            @if (Model.Count() == 0)
+            {
+                <div class="text-center" style="font-weight: bold">You have not added any events :) </div> 
+            }
+            else
+            {
+                foreach (var x in Model)
+                {
+                    counter = counter + 1;
+                        
+                <div class="well" style="margin-top: 10px">
+
+                    <div class="text-center">@counter</div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-left">
+                                <label>Time : </label>
+                                @x.Time
+                            </div>
+                            <div class="pull-right">
+                                <label>Date : </label>
+                                @x.Date
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="well" style="background-color: white">
+                            <label>Title :</label>
+                            @x.Title
+                            <br />
+                            <label>Note :</label>
+                            @x.Note
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary pull-left" id="@x.Id" onclick="fu(this.id)">Edit Event</button>
+                            <button class="btn btn-danger pull-right" id="@x.Id" onclick="fd(this.id)">Delete Event</button>
+                        </div>
+                    </div>
+
+
+
+
+                </div>   
+                     
+                }
+            }
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+    function fu(id) {
+        window.location.replace("/Event/EditEvent?id=" + id);
+    }
+
+    function fd(id) {
+        $.getJSON("/Event/DeleteEvent?id=" + id, function (result) {
+            if (result) {
+                alert("Event Deleted Successfully");
+                window.location.replace("ViewEvents");
+            }
+        });
+    }
+
+</script>

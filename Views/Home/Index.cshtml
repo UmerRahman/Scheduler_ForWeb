@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Scheduler - Login";
+}
+
+
+<div class="container" id="div_center">
+
+    <div class="row">
+
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-primary" style="border-color: #808080; border-radius: 10px">
+                <div class="panel-body">
+
+
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <label style="color:gray">Login to<label style="color:green; margin-left:5px 
+                              ;vertical-align:middle ;font-size: x-large">Scheduler</label></label>
+                        </div>
+                    </div>
+
+
+                    <div class="text-center">
+                        <label id="error" style="color: red; visibility: hidden">Please fill out all the fields</label>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="uname">Username:</label>
+                                <input type="text" class="form-control" id="uname" onclick="hide()" placeholder="Enter username">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="pass">Password:</label>
+                                <input type="password" class="form-control" id="pass" onclick="hide()" placeholder="Enter password">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-md-12">
+                            <button id="signin" type="button" class="btn btn-primary btn-block">Sign in</button>
+                        </div>
+                    </div>
+
+
+                    <div class="row text-center" style="margin-top: 20px">
+                        <div class="col-md-12">
+                            <label>Don't have an account?</label><a href="/Home/SignUp" style="margin-left: 10px">Sign up</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    function hide() {
+        document.getElementById("error").textContent = "Please fill out all the fields";
+        document.getElementById("error").style.visibility = "hidden";
+    }
+
+    $(document).ready(function () {
+
+
+        //$('#signin').keydown(function (e) {
+        //    alert("enter pressed");
+        //});
+
+        //$('#signin').click(function () {
+        //    alert("clicked");
+        //});
+
+
+        $('#signin').click(function () {
+            var uname = $("#uname").val();
+            var pass = $("#pass").val();
+            if (uname == null || uname.length == 0 || pass == null || pass.length == 0) {
+                document.getElementById("error").style.visibility = "visible";
+            }
+            else {
+                $.getJSON("/Home/VerifytoLogin?uname=" + uname + '&pass=' + pass, function (result) {
+                    if (result == true) {
+                        location.href = '@Url.Content("~/Home/Home")';
+                    }
+                    else {
+                        document.getElementById("error").textContent = "Invalid username or password..!";
+                        document.getElementById("error").style.visibility = "visible";
+                    }
+                });
+            }
+        });
+
+    });
+
+</script>

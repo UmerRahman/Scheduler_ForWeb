@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "ViewProfiles";
+    int counter = 0;
+}
+@model List<Scheduler_Web.Models.Profile>
+
+
+<div class="container" id="div_viewevents">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text-center">Events added by " @Session["username"] "</h4>
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary" style="border-radius: 10px">
+        <div class="panel-body" style="margin-top: 20px">
+
+            @if (Model.Count() == 0)
+            {
+                <div class="text-center" style="font-weight: bold">You have not added any scheduled profiles :) </div> 
+            }
+            else
+            {
+                foreach (var x in Model)
+                {
+                    counter = counter + 1;
+                        
+                <div class="well" style="margin-top: 10px">
+
+                    <div class="text-center">@counter</div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-left">
+                                <label>Time Range: </label>
+                                @x.From    ---    @x.To
+                            </div>
+                            <div class="pull-right">
+                                <label>Date : </label>
+                                @x.Date
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="well" style="background-color: white">
+                            <label>Title :</label>
+                            @x.Title
+                            <br />
+                            <label>RingingMode :</label>
+                            @x.RingingMode
+                            <br />
+                            <label>Wifi :</label>
+                            @x.Wifi
+                            <br />
+                            <label>Flashlight :</label>
+                            @x.Flashlight
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary pull-left" id="@x.Id" onclick="fu(this.id)">Edit Event</button>
+                            <button class="btn btn-danger pull-right" id="@x.Id" onclick="fd(this.id)">Delete Event</button>
+                        </div>
+                    </div>
+
+
+
+
+                </div>   
+                     
+                }
+            }
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+    function fu(id) {
+        window.location.replace("/Profile/EditProfile?id=" + id);
+    }
+
+    function fd(id) {
+        $.getJSON("/Profile/DeleteProfile?id=" + id, function (result) {
+            if (result) {
+                alert("Profile Deleted Successfully");
+                window.location.replace("ViewProfiles");
+            }
+        });
+    }
+
+</script>

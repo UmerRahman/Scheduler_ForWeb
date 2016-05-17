@@ -1,0 +1,33 @@
+﻿#div_center {
+    margin-top: 10%;
+}
+@media screen and (max-width : 767px) {
+    #div_center {
+        margin-top: 50%;
+    }
+}
+
+
+#div_viewevents {
+    margin-top: 2%;
+}
+@media screen and (max-width : 767px) {
+    #div_viewevents {
+        margin-top: 5%;
+    }
+}
+
+
+#div_newactivity {
+    margin-top: 3%;
+}
+@media screen and (max-width : 767px) {
+    #div_newactivity {
+        margin-top: 15%;
+    }
+}
+
+
+#datepicker > span:hover {
+    cursor: pointer;
+}
